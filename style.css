@@ -10,3 +10,6 @@ h2 {
 table {
     border-collapse: collapse;
 }
+td {
+    padding: 15px;
+}
