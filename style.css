@@ -18,3 +18,9 @@ td:first-child {
     background-color: #pink;
     border-right: 2px solid #ddd;
 }
+/* Dropdowns */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
