@@ -34,3 +34,7 @@ td table td {
 img {
     border-radius: 8px;
 }
+/* Paragraph */
+p {
+    color: #555;
+}
