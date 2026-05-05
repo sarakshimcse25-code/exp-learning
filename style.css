@@ -1,45 +1,93 @@
+/* General */
 body {
-    font-family: Arial;
-    background: #eef2f7;
+  background: #f5f7fa;
+  font-family: Arial, sans-serif;
 }
 
 /* Navbar */
 .navbar {
-    background: #1e2a38;
+  background: #1e2a38;
 }
+
 .navbar a {
-    color: white !important;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: #0d6efd;
 }
 
 /* Sections */
 .section {
-    display: none;
-}
-.active {
-    display: block;
+  display: none;
 }
 
-/* Hero */
-.hero {
-    height: 90vh;
-    background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
+.section.active {
+  display: block;
 }
+
+/* Hero Section */
+.hero {
+  height: 80vh;
+  background: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
 .hero h1 {
-    background: rgba(0,0,0,0.5);
-    padding: 20px;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Filter Sidebar */
+select.form-select {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: #0b5ed7;
 }
 
 /* Cards */
-.card:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
 }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
 .card img {
-    height: 200px;
-    object-fit: cover;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 15px;
+}
+
+/* About Section */
+#about {
+  text-align: center;
 }
