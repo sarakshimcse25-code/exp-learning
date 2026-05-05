@@ -26,7 +26,7 @@
 </div>
 </nav>
 
-<!-- HOME -->
+
 <div id="home" class="section active">
 <div class="hero">
 <div>
@@ -49,12 +49,13 @@ Browse Properties
 </div>
 </div>
 
-<!-- PROPERTIES -->
+
 <div id="properties" class="section">
 <div class="container mt-4">
 <div class="row">
 
 <div class="col-md-3">
+
 <select id="priceFilter" class="form-select mb-2">
 <option value="all">All</option>
 <option value="low">₹10L - ₹50L</option>
@@ -69,6 +70,30 @@ Browse Properties
 <option value="3">3 BHK</option>
 <option value="4">4 BHK</option>
 </select>
+
+
+<select id="locationFilter" class="form-select mb-2">
+<option value="all">All Locations</option>
+<option value="hinjewadi">Hinjewadi</option>
+<option value="kharadi">Kharadi</option>
+<option value="wakad">Wakad</option>
+<option value="baner">Baner</option>
+<option value="hadapsar">Hadapsar</option>
+</select>
+
+
+<select id="typeFilter" class="form-select mb-2">
+<option value="all">All Types</option>
+<option value="apartment">Apartment</option>
+<option value="villa">Villa</option>
+<option value="penthouse">Penthouse</option>
+</select>
+
+<button onclick="filterProperties()" class="btn btn-primary w-100">
+Apply
+</button>
+
+</div>
 
 <button onclick="filterProperties()" class="btn btn-primary w-100">Apply</button>
 </div>
