@@ -1,75 +1,134 @@
 // Navigation
-function showSection(id) {
-document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+function showSection(sectionId) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
 }
 
-// Data
+// Property Data
 const properties = [
-{title:"1BHK Budget Flat",price:2000000,bhk:1,location:"Pune",img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae"},
-{title:"2BHK Apartment",price:4500000,bhk:2,location:"Pune",img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb"},
-{title:"3BHK Luxury Flat",price:8000000,bhk:3,location:"Mumbai",img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"},
-{title:"4BHK Villa",price:15000000,bhk:4,location:"Mumbai",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c"}
+  {
+    title: "1 BHK in Wagholi",
+    price: 2800000,
+    bhk: 1,
+    location: "wagholi",
+    type: "apartment",
+    img: "https://via.placeholder.com/300",
+    details: "Affordable 1 BHK perfect for small families."
+  },
+  {
+    title: "2 BHK in Hinjewadi",
+    price: 5500000,
+    bhk: 2,
+    location: "hinjewadi",
+    type: "apartment",
+    img: "https://via.placeholder.com/300",
+    details: "Close to IT park, great investment."
+  },
+  {
+    title: "3 BHK in Baner",
+    price: 12000000,
+    bhk: 3,
+    location: "baner",
+    type: "apartment",
+    img: "https://via.placeholder.com/300",
+    details: "Spacious and premium society."
+  },
+  {
+    title: "3 BHK in Wakad",
+    price: 9500000,
+    bhk: 3,
+    location: "wakad",
+    type: "apartment",
+    img: "https://via.placeholder.com/300",
+    details: "Modern design with amenities."
+  },
+  {
+    title: "4 BHK Penthouse",
+    price: 22000000,
+    bhk: 4,
+    location: "kharadi",
+    type: "penthouse",
+    img: "https://via.placeholder.com/300",
+    details: "Luxury penthouse with skyline view."
+  },
+  {
+    title: "Villa in Hadapsar",
+    price: 30000000,
+    bhk: 4,
+    location: "hadapsar",
+    type: "villa",
+    img: "https://via.placeholder.com/300",
+    details: "Independent villa with garden."
+  },
+  {
+    title: "Luxury 5 BHK Villa",
+    price: 50000000,
+    bhk: 5,
+    location: "baner",
+    type: "villa",
+    img: "https://via.placeholder.com/300",
+    details: "Ultra luxury villa for premium buyers."
+  }
 ];
 
-// Load Cards
-function loadProperties(data) {
-let c = document.getElementById("propertyContainer");
-c.innerHTML = "";
+// Display Properties
+function displayProperties(list) {
+  const container = document.getElementById("propertyContainer");
+  container.innerHTML = "";
 
-data.forEach((p,i)=>{
-c.innerHTML += `
-<div class="col-md-6 mb-4">
-<div class="card shadow">
-<img src="${p.img}">
-<div class="card-body">
-<h5>${p.title}</h5>
-<p>₹${p.price.toLocaleString()} | ${p.bhk} BHK</p>
-<button onclick="showDetails(${i})" class="btn btn-primary">View</button>
-</div>
-</div>
-</div>`;
-});
+  list.forEach(p => {
+    container.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card shadow">
+          <img src="${p.img}" class="card-img-top">
+          <div class="card-body">
+            <h5>${p.title}</h5>
+            <p>₹${p.price.toLocaleString()}</p>
+            <button class="btn btn-primary w-100" onclick="showDetails('${p.title}')">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
 }
 
-// Filter + Sort
+// Filter Logic
 function filterProperties() {
-let price = document.getElementById("priceFilter").value;
-let bhk = document.getElementById("bhkFilter").value;
+  let price = document.getElementById("priceFilter").value;
+  let bhk = document.getElementById("bhkFilter").value;
+  let location = document.getElementById("locationFilter").value;
+  let type = document.getElementById("typeFilter").value;
 
-let sorted = [...properties].sort((a,b)=>{
-return getPriority(b,price)-getPriority(a,price);
-});
+  let filtered = properties.filter(p => {
 
-let filtered = sorted.filter(p=>{
-return (bhk==="all" || p.bhk==bhk);
-});
+    let priceMatch =
+      price === "all" ||
+      (price === "low" && p.price <= 5000000) ||
+      (price === "mid" && p.price > 5000000 && p.price <= 10000000) ||
+      (price === "high" && p.price > 10000000);
 
-loadProperties(filtered);
+    let bhkMatch = bhk === "all" || p.bhk == bhk;
+    let locMatch = location === "all" || p.location === location;
+    let typeMatch = type === "all" || p.type === type;
+
+    return priceMatch && bhkMatch && locMatch && typeMatch;
+  });
+
+  displayProperties(filtered);
 }
 
-// Priority
-function getPriority(p,price){
-if(price==="low" && p.price<=5000000) return 1;
-if(price==="mid" && p.price>5000000 && p.price<=10000000) return 1;
-if(price==="high" && p.price>10000000) return 1;
-return 0;
+// Modal Details
+function showDetails(title) {
+  let property = properties.find(p => p.title === title);
+
+  document.getElementById("modalTitle").innerText = property.title;
+  document.getElementById("modalImg").src = property.img;
+  document.getElementById("modalDetails").innerText = property.details;
+
+  new bootstrap.Modal(document.getElementById('propertyModal')).show();
 }
 
-// Modal
-function showDetails(i){
-let p=properties[i];
-
-document.getElementById("modalTitle").innerText=p.title;
-document.getElementById("modalImg").src=p.img;
-document.getElementById("modalDetails").innerHTML=`
-Price: ₹${p.price.toLocaleString()}<br>
-Location: ${p.location}<br>
-BHK: ${p.bhk} BHK
-`;
-
-new bootstrap.Modal(document.getElementById("propertyModal")).show();
-}
-
-// Initial Load
-loadProperties(properties);
+// Load all properties initially
+displayProperties(properties);
