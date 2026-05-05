@@ -1,10 +1,8 @@
-// Navigation
 function showSection(sectionId) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(sectionId).classList.add('active');
 }
 
-// Property Data
 const properties = [
   {
     title: "1 BHK in Wagholi",
@@ -12,8 +10,8 @@ const properties = [
     bhk: 1,
     location: "wagholi",
     type: "apartment",
-    img: "https://via.placeholder.com/300",
-    details: "Affordable 1 BHK perfect for small families."
+    img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+    details: "Affordable home perfect for small family."
   },
   {
     title: "2 BHK in Hinjewadi",
@@ -21,8 +19,8 @@ const properties = [
     bhk: 2,
     location: "hinjewadi",
     type: "apartment",
-    img: "https://via.placeholder.com/300",
-    details: "Close to IT park, great investment."
+    img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+    details: "Near IT park with great connectivity."
   },
   {
     title: "3 BHK in Baner",
@@ -30,8 +28,8 @@ const properties = [
     bhk: 3,
     location: "baner",
     type: "apartment",
-    img: "https://via.placeholder.com/300",
-    details: "Spacious and premium society."
+    img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c",
+    details: "Spacious premium apartment."
   },
   {
     title: "3 BHK in Wakad",
@@ -39,7 +37,7 @@ const properties = [
     bhk: 3,
     location: "wakad",
     type: "apartment",
-    img: "https://via.placeholder.com/300",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
     details: "Modern design with amenities."
   },
   {
@@ -48,7 +46,7 @@ const properties = [
     bhk: 4,
     location: "kharadi",
     type: "penthouse",
-    img: "https://via.placeholder.com/300",
+    img: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
     details: "Luxury penthouse with skyline view."
   },
   {
@@ -57,21 +55,11 @@ const properties = [
     bhk: 4,
     location: "hadapsar",
     type: "villa",
-    img: "https://via.placeholder.com/300",
+    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
     details: "Independent villa with garden."
-  },
-  {
-    title: "Luxury 5 BHK Villa",
-    price: 50000000,
-    bhk: 5,
-    location: "baner",
-    type: "villa",
-    img: "https://via.placeholder.com/300",
-    details: "Ultra luxury villa for premium buyers."
   }
 ];
 
-// Display Properties
 function displayProperties(list) {
   const container = document.getElementById("propertyContainer");
   container.innerHTML = "";
@@ -94,7 +82,6 @@ function displayProperties(list) {
   });
 }
 
-// Filter Logic
 function filterProperties() {
   let price = document.getElementById("priceFilter").value;
   let bhk = document.getElementById("bhkFilter").value;
@@ -119,7 +106,6 @@ function filterProperties() {
   displayProperties(filtered);
 }
 
-// Modal Details
 function showDetails(title) {
   let property = properties.find(p => p.title === title);
 
@@ -130,5 +116,4 @@ function showDetails(title) {
   new bootstrap.Modal(document.getElementById('propertyModal')).show();
 }
 
-// Load all properties initially
 displayProperties(properties);
